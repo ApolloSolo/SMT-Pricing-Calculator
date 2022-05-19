@@ -23,3 +23,31 @@ label {
 .hide {
     display: none;
 }
+
+.card-body{
+    padding: 1rem 0 1rem 0;
+    box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.5);
+}
+
+.card{
+    display: flex;
+}
+
+.haul-cost{
+    display: flex;
+    align-items: center;
+}
+
+.final-section{
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .haul-cost {
+      flex-direction: column;
+    }
+    .final-section{
+        flex-direction: column;
+    }
+  }
