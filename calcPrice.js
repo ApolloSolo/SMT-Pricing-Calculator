@@ -1,27 +1,19 @@
 const calcBtn = document.getElementById('calc-smash');
+const currentPerMonthEl = document.getElementById('currentPerMonth')
+const numBinsEl = document.getElementById('numBins');
 
-function estimateNumHauls() {
-    let smashDisplay = document.querySelector(".smash-calc");
-    smashDisplay.classList.remove('hide');
-    let currentHaulsInput = parseFloat(document.getElementById('currentPerMonth').value.trim());
-    let numBinInput = parseInt(document.getElementById('currentPerMonth').value.trim());
-    let compactionRateInput = parseFloat(document.getElementById('compRate').value.trim());
+function calcHaulMonth() {
+    let haulDumpsterMonth = document.getElementById('haulDumpsterMonth');
+    let value = currentPerMonthEl.value.trim();
+    let anotherValue = numBinsEl.value.trim();
+    let perDumpster  = value/anotherValue
+    haulDumpsterMonth.value = perDumpster.toFixed(2)
+}
 
-    let estimateHaulsOutput = document.getElementById('estHauls');
-    let smashesReqOutput = document.getElementById('smashedRequired');
-    let smashWeekOutput = document.getElementById('smashWeek');
-    let smashMonthOutput = document.getElementById('smashMonth');
-
-    let hauls = compactionRateInput/100 * currentHaulsInput;
-    estimateHaulsOutput.value = hauls
-    smashesReqOutput.value = currentHaulsInput * hauls;
-
-    let weeklySmashes = (currentHaulsInput * hauls)/4
-    smashWeekOutput.value = weeklySmashes;
-
-    let smashMonth = (weeklySmashes*52)/12;
-    smashMonthOutput.value = smashMonth.toFixed(1);
+function calcCurrentCost() {
 
 }
 
-calcBtn.addEventListener('click', estimateNumHauls)
+calcBtn.addEventListener('click', calcCurrentCost)
+currentPerMonthEl.addEventListener('change', calcHaulMonth)
+numBinsEl.addEventListener('change', calcHaulMonth)
