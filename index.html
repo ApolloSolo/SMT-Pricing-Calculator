@@ -93,57 +93,87 @@
           </div>
           <div class="d-grid gap-2 col-6 mx-auto">
             <button id="calc-current" class="btn btn-primary" type="button">
-              Update
+              Calculate
             </button>
           </div>
       </div>
 
-      <div id="currentState" class="current-state">
-          <h2>Current State</h2>
-        <div class="mb-3 card" style="width: 20rem">
-            <div class="card-body">
-              <h3 class="card-title">Weekly Hauls Per Bin</h3>
-              <h4 class="card-text" id="currentWeekHauls">-</h4>
-            </div>
-          </div>
-
+      <div id="container" class="hide">
+        <div id="currentState" class="current-state">
+            <h2>Current State</h2>
           <div class="mb-3 card" style="width: 20rem">
-            <div class="card-body">
-              <h3 class="card-title">Total Monthly Hauls</h3>
-              <h4 class="card-text" id="currentMonthHauls">-</h4>
+              <div class="card-body">
+                <h3 class="card-title">Weekly Hauls Per Bin</h3>
+                <h4 class="card-text" id="currentWeekHauls">-</h4>
+              </div>
             </div>
-          </div>
-
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Total Monthly Hauls</h3>
+                <h4 class="card-text" id="currentMonthHauls">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Monthly Haul Costs</h3>
+                <h4 class="card-text" id="currentMonthHaulCost">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Annual Haul Costs</h3>
+                <h4 class="card-text" id="currentAnualHaulCost">-</h4>
+              </div>
+            </div>
+        </div>
+  
+        <div class="proposed-changes">
+          <h2>Calculated Savings</h2>
           <div class="mb-3 card" style="width: 20rem">
-            <div class="card-body">
-              <h3 class="card-title">Monthly Haul Costs</h3>
-              <h4 class="card-text" id="currentMonthHaulCost">-</h4>
+              <div class="card-body">
+                <h3 class="card-title">Future Monthly Hauls</h3>
+                <h4 class="card-text" id="futureMonthHauls">-</h4>
+              </div>
             </div>
-          </div>
-
-          <div class="mb-3 card" style="width: 20rem">
-            <div class="card-body">
-              <h3 class="card-title">Annual Haul Costs</h3>
-              <h4 class="card-text" id="currentAnualHaulCost">-</h4>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Eliminated Hauls</h3>
+                <h4 class="card-text" id="eliminatedHauls">-</h4>
+              </div>
             </div>
-          </div>
-      </div>
-
-      <div class="proposed-changes">
-        <h2>Calculated Savings</h2>
-        <div class="mb-3 card" style="width: 20rem">
-            <div class="card-body">
-              <h3 class="card-title">Future Monthly Hauls</h3>
-              <h4 class="card-text" id="futureMonthHauls">-</h4>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">New Monthly Haul Cost</h3>
+                <h4 class="card-text" id="newMonthlyHaulCost">-</h4>
+              </div>
             </div>
-          </div>
-
-          <div class="mb-3 card" style="width: 20rem">
-            <div class="card-body">
-              <h3 class="card-title">Eliminated Hauls</h3>
-              <h4 class="card-text" id="eliminatedHauls">-</h4>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Monthly Smash Fee</h3>
+                <h4 class="card-text" id="smashFee">-</h4>
+              </div>
             </div>
-          </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Total Monthly Cost</h3>
+                <h4 class="card-text" id="totalMonthly">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Future Annual Cost</h3>
+                <h4 class="card-text" id="totalAnnual">-</h4>
+              </div>
+            </div>
+        </div>
       </div>
 
 
