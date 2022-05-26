@@ -1,19 +1,54 @@
-const calcBtn = document.getElementById('calc-smash');
-const currentPerMonthEl = document.getElementById('currentPerMonth')
-const numBinsEl = document.getElementById('numBins');
+const calcCurrent = document.getElementById("calc-current");
+const currentState = document.getElementById("currentState");
 
-function calcHaulMonth() {
-    let haulDumpsterMonth = document.getElementById('haulDumpsterMonth');
-    let value = currentPerMonthEl.value.trim();
-    let anotherValue = numBinsEl.value.trim();
-    let perDumpster  = value/anotherValue
-    haulDumpsterMonth.value = perDumpster.toFixed(2)
-}
+const c = (el) => {
+  console.log(el);
+  console.log(typeof el);
+};
 
-function calcCurrentCost() {
+const calcCurrentData = () => {
+  //Inputs
+  const currentHaulsPerMonthEl = parseFloat(
+    document.getElementById("currentHaulsPerMonth").value.trim()
+  );
+  const numBins = parseFloat(document.getElementById("numBins").value.trim());
 
-}
+  //Outputs
+  const currentWeekHaulsEl = document.getElementById("currentWeekHauls");
+  currentWeekHaulsEl.textContent = currentHaulsPerMonthEl / 4;
 
-calcBtn.addEventListener('click', calcCurrentCost)
-currentPerMonthEl.addEventListener('change', calcHaulMonth)
-numBinsEl.addEventListener('change', calcHaulMonth)
+  const currentMonthHauls = document.getElementById("currentMonthHauls");
+  let currentMonthHaulsValue =  numBins * currentHaulsPerMonthEl;
+  currentMonthHauls.textContent = currentMonthHaulsValue;
+
+  // Cost Inputs
+  const currentPerHaulCost = parseFloat(
+    document.getElementById("currentPerHaulCost").value.trim()
+  );
+
+  // Cost Output
+
+  const currentMonthHaulCostEl = document.getElementById("currentMonthHaulCost");
+  let currentMonthHaulCostValue = currentPerHaulCost * currentMonthHaulsValue;
+  currentMonthHaulCostEl.textContent = currentMonthHaulCostValue
+
+  const currentAnualHaulCost = document.getElementById("currentAnualHaulCost");
+  currentAnualHaulCost.textContent = (currentMonthHaulCostValue * 12).toFixed(1)
+
+  //Remove hide class
+  currentState.classList.remove("hide");
+
+  // Value Outputs
+  const compactionRatioValue = parseFloat(document.getElementById("compRate").value.trim())/100;
+  const futureMonthHaulsEl = document.getElementById("futureMonthHauls")
+  let futureMonthHaulsValue = ((1 - compactionRatioValue) * currentMonthHaulsValue).toFixed(1)
+  futureMonthHaulsEl.textContent = futureMonthHaulsValue
+
+  const eliminatedHauls = document.getElementById('eliminatedHauls');
+  let eliminatedHaulsValue = (currentMonthHaulsValue - futureMonthHaulsValue).toFixed(1)
+  c(eliminatedHaulsValue);
+  eliminatedHauls.textContent = eliminatedHaulsValue
+};
+
+
+calcCurrent.addEventListener('click', calcCurrentData);

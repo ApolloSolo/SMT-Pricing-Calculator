@@ -4,101 +4,194 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Price-Calculator</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
-</head>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1 class="text-center">Smash My Trash Calculator</h1>
+      <h1 class="text-center">Smash My Trash Calculator</h1>
     </header>
     <main id="main">
-        <div class="smash-inputs">
-            <div>
-                <label for="savingsRate" class="form-label">Savings Rate</label>
+      <div class="smash-inputs">
+        <div>
+          <label for="savingsRate" class="form-label">Discount Desired</label>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-text">%</div>
+          <input
+            type="number"
+            class="form-control"
+            id="savingsRate"
+            placeholder="0"
+            required
+          />
+        </div>
+        <div class="mb-3">
+            <label for="numBins" class="form-label">Number of Dumpsters</label>
+            <input
+              type="number"
+              class="form-control"
+              id="numBins"
+              placeholder="0"
+              required
+            />
+        <div class="mb-3">
+          <label for="currentHaulsPerMonth" class="form-label"
+            >Monthly Hauls per Dumpster</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="currentHaulsPerMonth"
+            placeholder="0"
+            required
+          />
+        </div>
+        </div>
+        <div>
+          <label for="compRate" class="form-label">Trial Compaction Ratio</label>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-text">%</div>
+          <input
+            type="number"
+            class="form-control"
+            id="compRate"
+            placeholder="0"
+            required
+          />
+        </div>
+        <div class="mb-3">
+            <label for="currentPerHaulCost" class="form-label"
+              >Per Haul Cost</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="currentPerHaulCost"
+              placeholder="0"
+              required
+            />
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button id="calc-current" class="btn btn-primary" type="button">
+              Update
+            </button>
+          </div>
+      </div>
+
+      <div id="currentState" class="current-state">
+          <h2>Current State</h2>
+        <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Weekly Hauls Per Bin</h3>
+              <h4 class="card-text" id="currentWeekHauls">-</h4>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">%</div>
-                <input type="number" class="form-control" id="savingsRate" placeholder="0" required>
+          </div>
+
+          <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Total Monthly Hauls</h3>
+              <h4 class="card-text" id="currentMonthHauls">-</h4>
             </div>
-            <div class="mb-3">
-                <label for="currentPerMonth" class="form-label">Current Hauls Per Month</label>
-                <input type="number" class="form-control" id="currentPerMonth" placeholder="0" required>
+          </div>
+
+          <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Monthly Haul Costs</h3>
+              <h4 class="card-text" id="currentMonthHaulCost">-</h4>
             </div>
-            <div class="mb-3">
-                <label for="numBins" class="form-label">Number of Dumpsters</label>
-                <input type="number" class="form-control" id="numBins" placeholder="0" required>
+          </div>
+
+          <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Annual Haul Costs</h3>
+              <h4 class="card-text" id="currentAnualHaulCost">-</h4>
             </div>
-            <div class="mb-3">
-                <label for="haulDumpsterMonth" class="form-label">Hauls Per Dumster/Month</label>
-                <input type="number" class="form-control" id="haulDumpsterMonth" placeholder="0" required>
+          </div>
+      </div>
+
+      <div class="proposed-changes">
+        <h2>Calculated Savings</h2>
+        <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Future Monthly Hauls</h3>
+              <h4 class="card-text" id="futureMonthHauls">-</h4>
             </div>
-            <div class="mb-3">
-                <label for="numBins" class="form-label">Per Haul Price</label>
-                <input type="number" class="form-control" id="haulPrice" placeholder="0" required>
+          </div>
+
+          <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Eliminated Hauls</h3>
+              <h4 class="card-text" id="eliminatedHauls">-</h4>
             </div>
-            <div>
-                <label for="compRate" class="form-label">Trial Compaction Rate</label>
+          </div>
+      </div>
+
+
+
+      <!-- <div class="hauls-calc hide">
+        <div class="haul-cost text-center">
+          <div class="mb-3 d-flex flex-column" style="width: 20rem">
+            <h1>Client Hauling Costs</h1>
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">Monthly Haul Cost</h3>
+                <h4 class="card-text" id="smashMonth"></h4>
+              </div>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">%</div>
-                <input type="number" class="form-control" id="compRate" placeholder="0" required>
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">Yearly Haul Cost</h3>
+                <h4 class="card-text" id="smashWeek"></h4>
+              </div>
             </div>
+          </div>
         </div>
 
-        <div class="hauls-calc">
-            <div class="haul-cost text-center">
-                <h1>Client Hauling Costs</h1>
-                <div class="mb-3 card d-flex" style="width: 20rem;">
-                    <div class="">
-                        <h3 class="card-title">Monthly Haul Cost</h3>
-                        <h4 class="card-text" id="smashMonth"></h4>
-                    </div>
-                    <div class="">
-                        <h3 class="card-title">Yearly Haul Cost</h3>
-                        <h4 class="card-text" id="smashWeek"></h4>
-                    </div>
-                </div>
+        <div class="haul-reduction text-center">
+          <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Future Monthly Hauls</h3>
+              <h4 class="card-text" id="estHauls">7.2</h4>
             </div>
+          </div>
 
-            <div class="haul-reduction text-center">
-                <div class="mb-3 card" style="width: 20rem;">
-                    <div class="card-body">
-                        <h3 class="card-title">Future Monthly Hauls</h3>
-                        <h4 class="card-text" id="estHauls">7.2</h4>
-                    </div>
-                </div>
-
-                <div class="mb-3 card" style="width: 20rem;">
-                    <div class="card-body">
-                        <h3 class="card-title">Hauls Eliminated</h3>
-                        <h4 class="card-text" id="smashedRequired">16.2</h4>
-                    </div>
-                </div>
+          <div class="mb-3 card" style="width: 20rem">
+            <div class="card-body">
+              <h3 class="card-title">Hauls Eliminated</h3>
+              <h4 class="card-text" id="smashedRequired">16.2</h4>
             </div>
-
+          </div>
         </div>
+      </div>
 
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button id="calc-smash" class="btn btn-primary" type="button">Smash</button>
-        </div>
-
-
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button id="calc-smash" class="btn btn-primary" type="button">
+          Smash
+        </button>
+      </div> -->
     </main>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
     <script src="calcPrice.js" async defer></script>
-</body>
-
+  </body>
 </html>
