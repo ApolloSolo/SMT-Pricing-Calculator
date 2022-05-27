@@ -18,7 +18,7 @@ const calcCurrentData = () => {
   currentWeekHaulsEl.textContent = currentHaulsPerMonthEl / 4;
 
   const currentMonthHauls = document.getElementById("currentMonthHauls");
-  let currentMonthHaulsValue =  numBins * currentHaulsPerMonthEl;
+  let currentMonthHaulsValue =  parseFloat(numBins * currentHaulsPerMonthEl).toFixed(2);
   currentMonthHauls.textContent = currentMonthHaulsValue;
 
   // Cost Inputs
@@ -29,11 +29,12 @@ const calcCurrentData = () => {
   // Cost Output
 
   const currentMonthHaulCostEl = document.getElementById("currentMonthHaulCost");
-  let currentMonthHaulCostValue = currentPerHaulCost * currentMonthHaulsValue;
+  let currentMonthHaulCostValue = parseFloat(currentPerHaulCost * currentMonthHaulsValue).toFixed(2);
   currentMonthHaulCostEl.textContent = currentMonthHaulCostValue
 
   const currentAnualHaulCost = document.getElementById("currentAnualHaulCost");
-  currentAnualHaulCost.textContent = (currentMonthHaulCostValue * 12).toFixed(1)
+  let currentAnualHaulCostValue = (currentMonthHaulCostValue * 12).toFixed(2)
+  currentAnualHaulCost.textContent = currentAnualHaulCostValue;
 
   //Remove hide class
   container.classList.remove("hide");
@@ -42,8 +43,13 @@ const calcCurrentData = () => {
   // Value Outputs
   const compactionRatioValue = parseFloat(document.getElementById("compRate").value.trim())/100;
   const futureMonthHaulsEl = document.getElementById("futureMonthHauls")
-  let futureMonthHaulsValue = ((1 - compactionRatioValue) * currentMonthHaulsValue).toFixed(2)
+  let futureMonthHaulsValue = parseFloat(((1 - compactionRatioValue) * currentMonthHaulsValue)).toFixed(2)
+  //Ratio derived
+  console.log("futureMonthHaulsValue")
+  c(futureMonthHaulsValue)
   futureMonthHaulsEl.textContent = futureMonthHaulsValue
+
+  let futureTotalHaulingMonthlyCost = Number(futureMonthHaulsValue) 
 
   const smashPerWeekEl = document.getElementById('smashPerWeek');
 
@@ -63,20 +69,46 @@ const calcCurrentData = () => {
   // New Haul cost
   const newMonthlyHaulCostEl = document.getElementById('newMonthlyHaulCost');
   let newMonthlyHaulCostValue = (futureMonthHaulsValue * currentPerHaulCost).toFixed(2);
-  c(newMonthlyHaulCostValue)
-  c(futureMonthHaulsValue)
-  c(currentPerHaulCost)
   newMonthlyHaulCostEl.textContent = newMonthlyHaulCostValue
 
-  let expectedDiscountPrice = currentMonthHaulCostValue*(compactionRatioValue);
+  let expectedDiscountPrice = parseFloat(currentMonthHaulsValue * currentPerHaulCost).toFixed(2);
+  console.log("expectedDiscountPrice")
+  c(expectedDiscountPrice)
 
-  let smashFeeMonthValue = expectedDiscountPrice - newMonthlyHaulCostValue
+  let smashFeeMonthValue = parseFloat(expectedDiscountPrice - newMonthlyHaulCostValue).toFixed(2);
   c(smashFeeMonthValue);
-  const smashFeeEl = document.getElementById("smashFee").textContent = smashFeeMonthValue.toFixed(2);
+  //const smashFeeEl = document.getElementById("smashFee").textContent = smashFeeMonthValue;
 
-  const totalMonthlyEl = document.getElementById("totalMonthly").textContent = expectedDiscountPrice.toFixed(2);
+  const savingsRate = document.getElementById("savingsRate").value.trim()/100
+  let totalMonthlyEl = document.getElementById("totalMonthly");
+  let totalMonthlyCostValue = (Number(expectedDiscountPrice) * (1-Number(savingsRate))).toFixed(2)
+  totalMonthlyEl.textContent = totalMonthlyCostValue;
+  let smashFeeValue = parseFloat(Number(totalMonthlyCostValue)-Number(newMonthlyHaulCostValue)).toFixed(2);
+  let smashFeeEl = document.getElementById("smashFee").textContent = smashFeeValue;
 
-  const totalAnnualEl = document.getElementById("totalAnnual").textContent = (expectedDiscountPrice * 12).toFixed(2);
+
+  let totalAnnualEl = document.getElementById("totalAnnual");
+  let totalAnnualValue = (totalMonthlyCostValue * 12).toFixed(2);
+  totalAnnualEl.textContent = totalAnnualValue;
+
+  // Convert
+  currentMonthHaulCostValue = "$ " + currentMonthHaulCostValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  currentMonthHaulCostEl.textContent = currentMonthHaulCostValue
+
+  currentAnualHaulCostValue = "$ " + currentAnualHaulCostValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  currentAnualHaulCost.textContent = currentAnualHaulCostValue;
+
+  newMonthlyHaulCostValue = "$ " + newMonthlyHaulCostValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  newMonthlyHaulCostEl.textContent = newMonthlyHaulCostValue
+
+  smashFeeValue = "$ " + smashFeeValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  smashFeeEl = document.getElementById("smashFee").textContent = smashFeeValue;
+
+  totalMonthlyCostValue = "$ " + totalMonthlyCostValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  totalMonthlyEl.textContent = totalMonthlyCostValue;
+
+  totalAnnualValue = "$ " + totalAnnualValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  totalAnnualEl.textContent = totalAnnualValue;
   }
 
 calcCurrent.addEventListener('click', calcCurrentData);
