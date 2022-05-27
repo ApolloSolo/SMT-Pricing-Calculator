@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Price-Calculator</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@700&family=Ultra&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <main id="main">
+      <div class="smash-inputs">
+        <h1 class="text-center">SMASH MY TRASH</h1>
+        <div>
+          <label for="savingsRate" class="form-label">Discount Desired</label>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-text percentDiv">%</div>
+          <input
+            type="number"
+            class="form-control percent"
+            id="savingsRate"
+            placeholder="0"
+            required
+          />
+        </div>
+        <div class="mb-3">
+            <label for="numBins" class="form-label">Number of Dumpsters</label>
+            <input
+              type="number"
+              class="form-control"
+              id="numBins"
+              placeholder="0"
+              required
+            />
+
+        </div>
+        <div class="mb-3">
+          <label for="currentHaulsPerMonth" class="form-label"
+            >Monthly Hauls per Dumpster</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="currentHaulsPerMonth"
+            placeholder="0"
+            required
+          />
+        </div>
+        <div>
+          <label for="compRate" class="form-label">Estimated Compaction</label>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-text percentDiv">%</div>
+          <input
+            type="number"
+            class="form-control percent"
+            id="compRate"
+            placeholder="0"
+            required
+          />
+        </div>
+        <div class="mb-3">
+            <label for="currentPerHaulCost" class="form-label"
+              >Per Haul Cost</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="currentPerHaulCost"
+              placeholder="0"
+              required
+            />
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button id="calc-current" class="" type="button">
+              <i class="fa-solid fa-calculator pe-1"></i> Calculate
+            </button>
+          </div>
+      </div>
+
+      <div id="container" class="hide">
+        <h2 class="text-center mt-3">CURRENT STATE</h2>
+        <div id="currentState" class="current-state">
+          <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Weekly Hauls Per Bin</h3>
+                <h4 class="card-text" id="currentWeekHauls">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Total Monthly Hauls</h3>
+                <h4 class="card-text" id="currentMonthHauls">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Monthly Haul Costs</h3>
+                <h4 class="card-text" id="currentMonthHaulCost">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Annual Haul Costs</h3>
+                <h4 class="card-text" id="currentAnualHaulCost">-</h4>
+              </div>
+            </div>
+        </div>
+  
+        <h2 class="text-center mt-4">CALCULATED SAVINGS</h2>
+        <div class="proposed-changes">
+          <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Future Monthly Hauls</h3>
+                <h4 class="card-text" id="futureMonthHauls">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Smash Per Week</h3>
+                <h4 class="card-text" id="smashPerWeek">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">New Monthly Haul Cost</h3>
+                <h4 class="card-text" id="newMonthlyHaulCost">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Monthly Smash Fee</h3>
+                <h4 class="card-text" id="smashFee">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Total Monthly Cost</h3>
+                <h4 class="card-text" id="totalMonthly">-</h4>
+              </div>
+            </div>
+  
+            <div class="mb-3 card" style="width: 20rem">
+              <div class="card-body">
+                <h3 class="card-title">Future Annual Cost</h3>
+                <h4 class="card-text" id="totalAnnual">-</h4>
+              </div>
+            </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/0bbb377993.js" crossorigin="anonymous"></script>
+    <script src="./assets/calcPrice.js" async defer></script>
+  </body>
+</html>
