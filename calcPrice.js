@@ -42,24 +42,37 @@ const calcCurrentData = () => {
   // Value Outputs
   const compactionRatioValue = parseFloat(document.getElementById("compRate").value.trim())/100;
   const futureMonthHaulsEl = document.getElementById("futureMonthHauls")
-  let futureMonthHaulsValue = ((1 - compactionRatioValue) * currentMonthHaulsValue).toFixed(0)
+  let futureMonthHaulsValue = ((1 - compactionRatioValue) * currentMonthHaulsValue).toFixed(2)
   futureMonthHaulsEl.textContent = futureMonthHaulsValue
 
-  const eliminatedHauls = document.getElementById('eliminatedHauls');
-  let eliminatedHaulsValue = (currentMonthHaulsValue - futureMonthHaulsValue).toFixed(1)
-  c(eliminatedHaulsValue);
-  eliminatedHauls.textContent = eliminatedHaulsValue;
+  const smashPerWeekEl = document.getElementById('smashPerWeek');
+
+
+  let eliminatedHaulsValue = (currentMonthHaulsValue - futureMonthHaulsValue).toFixed(2)
+  let smashPerMonthValue = ((eliminatedHaulsValue * 2)/numBins).toFixed(2)
+  let smashPerWeekValue = (smashPerMonthValue/4.33).toFixed(2)
+  c(smashPerWeekValue);
+
+  if(currentMonthHaulsValue == 1) {
+    smashPerWeekEl.textContent = Math.ceil(smashPerWeekValue)/2
+  } else {
+    smashPerWeekEl.textContent = Math.ceil(smashPerWeekValue);
+  }
+ 
 
   // New Haul cost
   const newMonthlyHaulCostEl = document.getElementById('newMonthlyHaulCost');
-  let newMonthlyHaulCostValue = (futureMonthHaulsValue * currentPerHaulCost).toFixed(0);
+  let newMonthlyHaulCostValue = (futureMonthHaulsValue * currentPerHaulCost).toFixed(2);
+  c(newMonthlyHaulCostValue)
+  c(futureMonthHaulsValue)
+  c(currentPerHaulCost)
   newMonthlyHaulCostEl.textContent = newMonthlyHaulCostValue
 
   let expectedDiscountPrice = currentMonthHaulCostValue*(compactionRatioValue);
 
   let smashFeeMonthValue = expectedDiscountPrice - newMonthlyHaulCostValue
   c(smashFeeMonthValue);
-  const smashFeeEl = document.getElementById("smashFee").textContent = smashFeeMonthValue;
+  const smashFeeEl = document.getElementById("smashFee").textContent = smashFeeMonthValue.toFixed(2);
 
   const totalMonthlyEl = document.getElementById("totalMonthly").textContent = expectedDiscountPrice.toFixed(2);
 
