@@ -3,6 +3,10 @@ body{
     font-weight: 600;
 }
 
+#main{
+    height: 100vh;
+}
+
 h1{
     font-family: 'Ultra', serif;
     color: rgb(219, 28, 28);
