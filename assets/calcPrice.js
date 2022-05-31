@@ -51,7 +51,7 @@ const calcCurrentData = () => {
 
   let futureTotalHaulingMonthlyCost = Number(futureMonthHaulsValue)
 
-  const smashPerWeekEl = document.getElementById('smashPerWeek');
+  const smashPerMonthEl = document.getElementById('smashPerMonth');
 
 
   let eliminatedHaulsValue = (currentMonthHaulsValue - futureMonthHaulsValue).toFixed(2)
@@ -59,11 +59,14 @@ const calcCurrentData = () => {
   let smashPerWeekValue = (smashPerMonthValue / 4.33).toFixed(2)
   c(smashPerWeekValue);
 
-  if (currentMonthHaulsValue == 1) {
-    smashPerWeekEl.textContent = Math.ceil(smashPerWeekValue) / 2
-  } else {
-    smashPerWeekEl.textContent = Math.ceil(smashPerWeekValue);
-  }
+  smashPerMonthEl.textContent = smashPerMonthValue
+
+  // const smashPerWeekEl = document.getElementById('smashPerWeek');
+  // if (currentMonthHaulsValue == 1) {
+  //   smashPerWeekEl.textContent = Math.ceil(smashPerWeekValue) / 2
+  // } else {
+  //   smashPerWeekEl.textContent = Math.ceil(smashPerWeekValue);
+  // }
 
 
   // New Haul cost
