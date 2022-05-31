@@ -1,14 +1,13 @@
 body{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    height: -webkit-fill-available;
 }
 
 #main{
     height: 100vh;
-    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
+    min-height: -webkit-fill-available;
 }
 
 h1{
