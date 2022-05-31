@@ -37,7 +37,7 @@ const calcCurrentData = () => {
   currentAnualHaulCost.textContent = currentAnualHaulCostValue;
 
   //Remove hide class
-  container.classList.remove("hide");
+  //container.classList.remove("hide");
   calcCurrent.textContent = "Update"
 
   // Value Outputs
