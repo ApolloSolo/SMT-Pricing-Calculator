@@ -1,10 +1,11 @@
 body{
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    min-height: -webkit-fill-available;
 }
 
 #main{
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     min-height: -webkit-fill-available;
@@ -104,6 +105,7 @@ label {
 #container {
     background-color: #383838;
     color: rgb(255, 255, 255);
+    min-height: -webkit-fill-available;
 }
 
 .card {
